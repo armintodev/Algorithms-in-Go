@@ -11,5 +11,8 @@ func main() {
 	//useChannel()
 
 	//use channel without WaitGroup
-	useChannelWithoutWaitGroup()
+	//useChannelWithoutWaitGroup()
+
+	//use channel direction
+	useChannelDirection()
 }
