@@ -23,5 +23,8 @@ func main() {
 	//useMutexToAvoidRaceCondition()
 
 	//use Playing Chess
-	usePlayingChess()
+	//usePlayingChess()
+
+	//use Fibonacci Numbers
+	useFibonacciNumbers()
 }
