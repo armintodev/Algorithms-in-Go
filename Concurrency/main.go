@@ -20,5 +20,8 @@ func main() {
 	//useRaceCondition()
 
 	//use mutex to avoid race condition
-	useMutexToAvoidRaceCondition()
+	//useMutexToAvoidRaceCondition()
+
+	//use Playing Chess
+	usePlayingChess()
 }
