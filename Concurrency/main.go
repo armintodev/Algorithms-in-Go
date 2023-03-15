@@ -14,5 +14,11 @@ func main() {
 	//useChannelWithoutWaitGroup()
 
 	//use channel direction
-	useChannelDirection()
+	//useChannelDirection()
+
+	//use race condition
+	//useRaceCondition()
+
+	//use mutex to avoid race condition
+	useMutexToAvoidRaceCondition()
 }
