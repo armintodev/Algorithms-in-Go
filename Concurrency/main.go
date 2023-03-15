@@ -26,5 +26,11 @@ func main() {
 	//usePlayingChess()
 
 	//use Fibonacci Numbers
-	useFibonacciNumbers()
+	//useFibonacciNumbers()
+
+	//use Benchmarking concurrent and non-concurrent applications
+	//useBenchmarkingConcurrentApplications()
+
+	//use benchmarking numbers to sum
+	useBenchmarkingNumbersToSum()
 }
