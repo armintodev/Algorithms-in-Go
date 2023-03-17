@@ -14,5 +14,8 @@ func main() {
 	//useConcurrentSieveOfEratosthenes()
 
 	//use non-concurrent segmented sieve of eratosthenes
-	useNonConcurrentSegmentedSieveOfEratosthenes()
+	//useNonConcurrentSegmentedSieveOfEratosthenes()
+
+	//use concurrent segmented sieve of eratosthenes
+	useConcurrentSegmentedSieveOfEratosthenes()
 }

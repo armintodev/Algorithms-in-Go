@@ -3,14 +3,19 @@ package main
 import (
 	"fmt"
 	"math"
+	"runtime"
+	"sync"
 	"time"
 )
 
 const LargestPrime = 10_000_000
 
 var primes []int
+var primeNumbers []int
 
 var cores int
+
+var mutex sync.Mutex
 
 func SieveOfEratosthenes(n int) []int {
 	//Finds all primes up to 'n'
@@ -173,5 +178,77 @@ func useNonConcurrentSegmentedSieveOfEratosthenes() {
 	elapsed := time.Since(start)
 
 	fmt.Println("\nComputation time: ", elapsed)
+	fmt.Println("Number of primes: ", len(primeNumbers))
+}
+
+func concurrentPrimesBetween(prime []int, low, high int) {
+	//Computes the prime numbers between low and high
+	//given the initial set of primes from the SieveOfEratosthenes
+	defer waitGroup.Done()
+
+	limit := high - low
+	segment := make([]bool, limit+1)
+
+	for i := 0; i < len(segment); i++ {
+		segment[i] = true
+	}
+
+	//Find the primes in the current segment based on initial primes
+	for i := 0; i < len(prime); i++ {
+		lowLimit := int(math.Floor(float64(low)/float64(prime[i])) * float64(prime[i]))
+
+		if lowLimit < low {
+			lowLimit += prime[i]
+		}
+
+		for j := lowLimit; j < high; j += prime[i] {
+			segment[j-low] = false
+		}
+
+		//Each number in [low to high] is mapped to [0, low - high]
+		for j := lowLimit; j < high; j += prime[i] {
+			segment[j-low] = false
+		}
+	}
+	mutex.Lock()
+
+	for i := low; i < high; i++ {
+		if segment[i-low] == true {
+			primeNumbers = append(primeNumbers, i)
+		}
+	}
+	mutex.Unlock()
+}
+
+func concurrentSegmentedSieve(n int) {
+	limit := (int)(math.Floor(math.Sqrt(float64(n))))
+	prime := SieveOfEratosthenes(limit)
+
+	for i := 0; i < len(prime); i++ {
+		primeNumbers = append(primeNumbers, prime[i])
+	}
+
+	for low := limit; low < n; low += limit {
+		high := low + limit
+		if high >= n {
+			high = n
+		}
+		waitGroup.Add(1)
+		go concurrentPrimesBetween(prime, low, high)
+	}
+	waitGroup.Wait()
+}
+
+func useConcurrentSegmentedSieveOfEratosthenes() {
+	cores = runtime.NumCPU()
+
+	start := time.Now()
+
+	concurrentSegmentedSieve(LargestPrime)
+
+	elapsed := time.Since(start)
+
+	fmt.Println("\nNumber of Cores: ", cores)
+	fmt.Println("\nComputation time for concurrent: ", elapsed)
 	fmt.Println("Number of primes: ", len(primeNumbers))
 }
