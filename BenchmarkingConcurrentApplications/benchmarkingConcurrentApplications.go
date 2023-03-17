@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
+
+var waitGroup sync.WaitGroup
 
 var output1 float64
 var output2 float64
