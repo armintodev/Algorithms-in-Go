@@ -11,5 +11,11 @@ func main() {
 	//compareBubbleSortToQuickSort()
 
 	//comparing concurrent and regular(non-concurrent) algorithm to quickSort
-	compareConcurrentAndRegularQuickSort()
+	//compareConcurrentAndRegularQuickSort()
+
+	//use non-concurrent mergeSort algorithm
+	//useNonConcurrentMergeSort()
+
+	//use concurrent mergeSort algorithm
+	useConcurrentMergeSort()
 }
