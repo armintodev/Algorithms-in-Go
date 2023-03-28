@@ -1,6 +1,9 @@
 package main
 
 func main() {
-	//use non-concurrent linearSearch algorithm
-	useLinearSearch()
+	//use linearSearch algorithm
+	//useLinearSearch()
+
+	//use concurrent search algorithm
+	useConcurrentSearch()
 }
