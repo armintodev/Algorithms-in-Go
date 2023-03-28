@@ -5,5 +5,8 @@ func main() {
 	//useLinearSearch()
 
 	//use concurrent search algorithm
-	useConcurrentSearch()
+	//useConcurrentSearch()
+
+	//use binarySearch algorithm
+	useBinarySearch()
 }
