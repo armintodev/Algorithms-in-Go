@@ -24,11 +24,11 @@ type partTimeEmployee struct {
 	hourlyWage float64
 }
 
-//type PartTimeEmployee interface {
-//	Employee
-//	SetHourlyWage(hourly float64)
-//	GetHourlyWage() float64
-//}
+type PartTimeEmployee interface {
+	Employee
+	SetHourlyWage(hourly float64)
+	GetHourlyWage() float64
+}
 
 //Methods
 
